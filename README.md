@@ -1,5 +1,33 @@
 # PuzzleShop
 
+## Deploy
+
+這邊會用到angular-cli-ghpages， 先安裝這個庫。
+
+``` sh
+npm i -g angular-cli-ghpages
+```
+
+接下來會有兩個分支，請擇一執行:
+
+A. 部屬到GitHub Pages
+
+``` sh
+ng build --base-href /專案名稱/
+npx ngh --dir=dist/專案名稱
+```
+
+B. 部屬到GitHub Pages，使用custom domain
+
+``` sh
+ng build
+npx ngh --dir=dist/專案名稱 --cname=自定義域
+```
+
+---
+
+以下由Angular生成的文件:
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
 
 ## Development server
