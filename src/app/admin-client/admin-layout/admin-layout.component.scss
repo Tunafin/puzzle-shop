@@ -1,0 +1,66 @@
+$topbarHeight: 64px;
+$layoutContainerHeight: calc(100vh - 64px);
+
+.layout {
+  position: relative;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  max-height: $topbarHeight;
+  min-height: $topbarHeight;
+  padding: 0 8px;
+}
+
+.topbar-logo {
+  margin-top: -8px;
+}
+
+.topbar-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logout-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 16px;
+}
+
+.sidenav-container {
+  height: $layoutContainerHeight;
+}
+
+.sidenav {
+  width: 250px;
+  background-color: cadetblue;
+}
+
+.sidenav-content {
+  height: $layoutContainerHeight;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  width: 100%;
+  color: #fff;
+  background-color: gray;
+  text-align: center;
+  padding: 2px 0;
+}

@@ -1,3 +1,44 @@
-<p>admin-layout works!</p>
+<div class="layout">
 
-<button mat-stroked-button (click)="logout()">登出</button>
+  <mat-toolbar class="topbar" color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <ng-container *ngIf="isXSmall">
+      <h1 class="topbar-title">Puzzle Shop 後臺</h1>
+    </ng-container>
+    <ng-container *ngIf="!isXSmall">
+      <img class="topbar-logo" src="assets/logo1.png" alt="logo">
+      <h1 class="topbar-title">後臺管理系統</h1>
+    </ng-container>
+
+    <span class="spacer"></span>
+
+    <button mat-raised-button class="logout-btn" aria-label="Log out" color="primary" (click)="logout()">
+      <span class="logout-btn-content">
+        登出
+        <mat-icon matSuffix>logout</mat-icon>
+      </span>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav [mode]="isXSmall ? 'over' : 'side'" class="sidenav" [opened]="true">
+      <mat-nav-list *ngIf="isXSmall">
+        <!-- TODO 改用ngFor -->
+        <a mat-list-item routerLink="products" routerLinkActive="mdc-list-item--activated" (click)="sidenav.close()">產品列表</a>
+        <a mat-list-item routerLink="orders" routerLinkActive="mdc-list-item--activated" (click)="sidenav.close()">訂單列表</a>
+      </mat-nav-list>
+      <mat-nav-list *ngIf="!isXSmall">
+        <!-- TODO 改用ngFor -->
+        <a mat-list-item routerLink="products" routerLinkActive="mdc-list-item--activated">產品列表</a>
+        <a mat-list-item routerLink="orders" routerLinkActive="mdc-list-item--activated">訂單列表</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <router-outlet></router-outlet>
+      <span class="spacer"></span>
+      <div class="footer">v0.0.0</div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

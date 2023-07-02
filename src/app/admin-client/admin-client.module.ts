@@ -9,12 +9,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminNotFoundComponent } from './admin-not-found/admin-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 const canActivateFn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -45,7 +49,9 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivateChild: [canActivateFn],
     children: [
-      { path: '', component: AdminLayoutComponent },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
+      { path: 'products', component: ProductListComponent },
+      { path: 'orders', component: OrderListComponent },
     ]
   },
   { path: 'login', component: LoginComponent },
@@ -56,7 +62,9 @@ const routes: Routes = [
   declarations: [
     AdminNotFoundComponent,
     LoginComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    ProductListComponent,
+    OrderListComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +77,10 @@ const routes: Routes = [
     MatInputModule,
     MatToolbarModule,
     MatButtonModule,
-
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
     RouterModule.forChild(routes)
   ],
 })

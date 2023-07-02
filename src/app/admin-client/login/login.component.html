@@ -12,7 +12,7 @@
       <mat-card-content>
         <mat-form-field>
           <mat-label>信箱</mat-label>
-          <input matInput [formControl]="emailCtrl">
+          <input matInput [formControl]="emailCtrl" autocomplete="on">
           <mat-error *ngIf="emailCtrl.errors && emailCtrl.errors['required']">必填</mat-error>
         </mat-form-field>
 
