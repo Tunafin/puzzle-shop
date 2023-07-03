@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { finalize, of, take, tap } from 'rxjs';
+import { finalize, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -28,6 +28,7 @@ export class AuthGuardService {
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private http: HttpClient
   ) {
     this._adminToken = document.cookie.split(`token=`).pop()?.split(';').shift() ?? '';
@@ -45,9 +46,14 @@ export class AuthGuardService {
       next: (res) => {
         this._adminToken = res.token;
         document.cookie = `token=${res.token}; expires=${res.expired}; path=/;`;
+        console.log('登入成功');
 
-        console.log('登入成功')
-        this.router.navigate(['admin']);
+        if (this.router.url === '/admin/login') {
+          this.router.navigate(['admin']);
+        } else {
+          const url = this.activatedRoute.snapshot.queryParams['url'];
+          this.router.navigate([url]);
+        }
       },
       error: () => {
         console.log('登入失敗');
