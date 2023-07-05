@@ -16,19 +16,28 @@ export class CustomInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const { adminToken } = this.authGuardService;
-    if (!adminToken) {
-      return next.handle(request);
+
+    if (this._checkIfApiNeedToken(request.url)) {
+      // 設定admin token到標頭，這裡暫不檢查是否需要權限
+      const modifiedRequest = request.clone({
+        setHeaders: {
+          'Content-Type': 'application/json',
+          'Authorization': adminToken
+        }
+      });
+      return next.handle(modifiedRequest);
     }
 
-    // 設定admin token到標頭，這裡暫不檢查是否需要權限
-    const modifiedRequest = request.clone({
-      setHeaders: {
-        'Content-Type': 'application/json',
-        'Authorization': adminToken
-      }
-    });
+    return next.handle(request);
+  }
 
-    return next.handle(modifiedRequest);
+  private _checkIfApiNeedToken(url: string) {
+    const { baseURL, apiPath } = environment;
+    url = url.replace(baseURL, '');
+    if (url === '/v2/logout' || url === '/v2/api/user/check' || url.startsWith(`/v2/api/${apiPath}/admin`)) {
+      return true;
+    }
+    return false;
   }
 }
 

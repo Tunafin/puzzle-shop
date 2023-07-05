@@ -1,4 +1,5 @@
 export interface Environment {
-  production: boolean;
-  baseURL: string;
+  readonly production: boolean;
+  readonly baseURL: string;
+  readonly apiPath: string;
 }
