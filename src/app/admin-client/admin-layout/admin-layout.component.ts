@@ -5,6 +5,11 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { AuthGuardService } from './../services/auth-guard.service';
 
+interface NavItem {
+  name: string;
+  link: string;
+}
+
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -12,8 +17,13 @@ import { AuthGuardService } from './../services/auth-guard.service';
 })
 export class AdminLayoutComponent {
 
-  destroyed = new Subject<void>();
+  readonly navItems: NavItem[] = [
+    { name: '產品列表', link: 'products'},
+    { name: '訂單列表', link: 'orders'},
+  ];
+
   isXSmall = false;
+  destroyed = new Subject<void>();
 
   constructor(
     private breakpointObserver: BreakpointObserver,

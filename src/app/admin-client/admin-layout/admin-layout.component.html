@@ -24,15 +24,9 @@
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav [mode]="isXSmall ? 'over' : 'side'" class="sidenav" [opened]="true">
-      <mat-nav-list *ngIf="isXSmall">
-        <!-- TODO 改用ngFor -->
-        <a mat-list-item routerLink="products" routerLinkActive="mdc-list-item--activated" (click)="sidenav.close()">產品列表</a>
-        <a mat-list-item routerLink="orders" routerLinkActive="mdc-list-item--activated" (click)="sidenav.close()">訂單列表</a>
-      </mat-nav-list>
-      <mat-nav-list *ngIf="!isXSmall">
-        <!-- TODO 改用ngFor -->
-        <a mat-list-item routerLink="products" routerLinkActive="mdc-list-item--activated">產品列表</a>
-        <a mat-list-item routerLink="orders" routerLinkActive="mdc-list-item--activated">訂單列表</a>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let navItem of navItems" routerLinkActive="mdc-list-item--activated"
+          [routerLink]="navItem.link" (click)="isXSmall ? sidenav.close() : null">{{navItem.name}}</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
