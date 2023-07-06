@@ -30,7 +30,18 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
-      <router-outlet></router-outlet>
+      <div class="router-outlet-wrapper">
+        <div>
+          <span *ngFor="let breadcrumb of breadcrumbs; let last = last">
+            <ng-container *ngIf="!last">
+              <a [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a> /
+            </ng-container>
+            <ng-container *ngIf="last">{{breadcrumb.label}}</ng-container>
+          </span>
+        </div>
+        ---
+        <router-outlet></router-outlet>
+      </div>
       <span class="spacer"></span>
       <div class="footer">v0.0.0</div>
     </mat-sidenav-content>

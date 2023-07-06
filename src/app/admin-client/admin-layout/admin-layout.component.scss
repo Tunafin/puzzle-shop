@@ -57,6 +57,10 @@ $layoutContainerHeight: calc(100vh - 64px);
   flex-direction: column;
 }
 
+.router-outlet-wrapper {
+  padding: 16px;
+}
+
 .footer {
   width: 100%;
   color: #fff;

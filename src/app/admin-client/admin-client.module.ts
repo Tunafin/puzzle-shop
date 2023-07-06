@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
+import { Breadcrumb } from 'src/models/breadcrumb.model';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminNotFoundComponent } from './admin-not-found/admin-not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -48,10 +49,11 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     canActivateChild: [canActivateFn],
+    data: { breadcrumb: new Breadcrumb('後臺', '/admin') },
     children: [
       { path: '', redirectTo: 'products', pathMatch: 'full' },
-      { path: 'products', component: ProductListComponent },
-      { path: 'orders', component: OrderListComponent },
+      { path: 'products', component: ProductListComponent, data: { breadcrumb: new Breadcrumb('產品列表', '/admin/products') } },
+      { path: 'orders', component: OrderListComponent, data: { breadcrumb: new Breadcrumb('訂單列表', '/admin/orders') } },
     ]
   },
   { path: 'login', component: LoginComponent },
