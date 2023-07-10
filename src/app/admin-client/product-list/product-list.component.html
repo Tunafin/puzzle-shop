@@ -28,6 +28,15 @@
     <th mat-header-cell *matHeaderCellDef class="text-end"> 現價 </th>
     <td mat-cell *matCellDef="let product" class="text-end"> {{product.price}} </td>
   </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef class="text-end"> </th>
+    <td mat-cell *matCellDef="let product" class="text-end">
+      <button mat-flat-button color="primary" [routerLink]="product.id">
+        詳細資料
+      </button>
+    </td>
+  </ng-container>
 </table>
 
 <div *ngIf="isLoading" class="spinner-wrapper">

@@ -1,0 +1,10 @@
+<div class="product-container">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="!isLoading && !product">查無此id</div>
+  <ng-container *ngIf="product">
+    <!-- TODO Read mode and edit mode -->
+    <span>施工中敬請期待</span>
+    <img [src]="product.imageUrl" alt="商品圖片" width="300">
+
+  </ng-container>
+</div>

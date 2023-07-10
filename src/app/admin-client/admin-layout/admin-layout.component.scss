@@ -61,6 +61,14 @@ $layoutContainerHeight: calc(100vh - 64px);
   padding: 16px;
 }
 
+.breadcrumb-container {
+  margin-bottom: 16px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
 .footer {
   width: 100%;
   color: #fff;

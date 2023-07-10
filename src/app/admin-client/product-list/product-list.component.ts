@@ -12,7 +12,7 @@ import { AdminProductService } from './../services/admin-product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  readonly columnsToDisplay: (keyof Product)[] = ['imageUrl','title', 'category', 'origin_price', 'price'];
+  readonly columnsToDisplay: (keyof Product)[] = ['imageUrl', 'title', 'category', 'origin_price', 'price', 'id'];
   dataSource = new MatTableDataSource<Product>([]);
   isLoading = true;
 

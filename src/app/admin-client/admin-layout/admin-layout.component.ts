@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { Subject, filter, map, takeUntil } from 'rxjs';
 
@@ -24,9 +25,13 @@ export class AdminLayoutComponent {
     { name: '訂單列表', link: 'orders' },
   ];
 
+  readonly isInitSidenavOpen: boolean;
+
   isXSmall = false;
   breadcrumbs: Breadcrumb[] = [];
   destroyed = new Subject<void>();
+
+  @ViewChild(MatSidenav) sidenav?: MatSidenav;
 
   constructor(
     private router: Router,
@@ -37,8 +42,11 @@ export class AdminLayoutComponent {
     this.breakpointObserver.observe([Breakpoints.XSmall])
       .pipe(takeUntil(this.destroyed))
       .subscribe(result => {
+        // 會在一開始就觸發一次
         this.isXSmall = result.matches;
       });
+
+    this.isInitSidenavOpen = !this.isXSmall;
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),

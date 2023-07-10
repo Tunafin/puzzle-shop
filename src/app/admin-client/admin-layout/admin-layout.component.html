@@ -23,7 +23,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav [mode]="isXSmall ? 'over' : 'side'" class="sidenav" [opened]="true">
+    <mat-sidenav #sidenav [mode]="isXSmall ? 'over' : 'side'" class="sidenav" [opened]="isInitSidenavOpen">
       <mat-nav-list>
         <a mat-list-item *ngFor="let navItem of navItems" routerLinkActive="mdc-list-item--activated"
           [routerLink]="navItem.link" (click)="isXSmall ? sidenav.close() : null">{{navItem.name}}</a>
@@ -31,15 +31,17 @@
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
       <div class="router-outlet-wrapper">
-        <div>
+        <div class="breadcrumb-container">
           <span *ngFor="let breadcrumb of breadcrumbs; let last = last">
             <ng-container *ngIf="!last">
-              <a [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a> /
+              <a *ngIf="breadcrumb.url" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
+              <ng-container *ngIf="!breadcrumb.url">{{breadcrumb.label}}</ng-container>
+              /
             </ng-container>
             <ng-container *ngIf="last">{{breadcrumb.label}}</ng-container>
           </span>
         </div>
-        ---
+
         <router-outlet></router-outlet>
       </div>
       <span class="spacer"></span>

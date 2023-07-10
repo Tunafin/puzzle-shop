@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const canActivateFn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -55,7 +56,14 @@ const routes: Routes = [
     data: { breadcrumb: new Breadcrumb('後臺', '/admin') },
     children: [
       { path: '', redirectTo: 'products', pathMatch: 'full' },
-      { path: 'products', component: ProductListComponent, data: { breadcrumb: new Breadcrumb('產品列表', '/admin/products') } },
+      {
+        path: 'products',
+        data: { breadcrumb: new Breadcrumb('產品列表', '/admin/products') },
+        children: [
+          { path: '', component: ProductListComponent, data: { breadcrumb: null } },
+          { path: ':id', component: ProductDetailComponent, data: { breadcrumb: new Breadcrumb('詳細資料') } },
+        ]
+      },
       { path: 'orders', component: OrderListComponent, data: { breadcrumb: new Breadcrumb('訂單列表', '/admin/orders') } },
     ]
   },
@@ -69,7 +77,8 @@ const routes: Routes = [
     LoginComponent,
     AdminLayoutComponent,
     ProductListComponent,
-    OrderListComponent
+    OrderListComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
