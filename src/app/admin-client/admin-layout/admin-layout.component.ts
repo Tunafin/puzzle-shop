@@ -22,6 +22,7 @@ export class AdminLayoutComponent {
 
   readonly navItems: NavItem[] = [
     { name: '產品列表', link: 'products' },
+    { name: '產品列表(new)', link: 'products_new' },
     { name: '訂單列表', link: 'orders' },
   ];
 

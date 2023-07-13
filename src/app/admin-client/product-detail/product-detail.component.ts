@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
 import { finalize } from 'rxjs';
 
@@ -18,11 +19,28 @@ export class ProductDetailComponent implements OnInit {
   product?: Product;
   isIdNotFound = false;
 
+  formGroup: FormGroup<{ [K in keyof Product]: FormControl<any> }>;
+
   constructor(
     private route: ActivatedRoute,
     private adminProductService: AdminProductService,
     private userProductService: UserProductService,
-  ) { }
+  ) {
+    this.formGroup = new FormGroup({
+      category: new FormControl<string>(''),
+      content: new FormControl<string>(''),
+      description: new FormControl<string>(''),
+      id: new FormControl(),
+      is_enabled: new FormControl(),
+      num: new FormControl(),
+      origin_price: new FormControl(),
+      price: new FormControl(),
+      title: new FormControl(),
+      unit: new FormControl(),
+      imageUrl: new FormControl(),
+      imagesUrl: new FormControl(),
+    })
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

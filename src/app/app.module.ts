@@ -2,6 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { Observable } from 'rxjs';
 
@@ -41,6 +42,18 @@ export class CustomInterceptor implements HttpInterceptor {
   }
 }
 
+@Injectable()
+export class CustomPaginatorIntl extends MatPaginatorIntl {
+  /** 這裡的length是指api丟回來的總頁數 */
+  override getRangeLabel = (page: number, pageSize: number, length: number) => {
+    if(length>0) {
+      return `第${page+1}頁 (共${length}頁)`;
+    } else {
+      return `沒有資料`;
+    }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -56,7 +69,7 @@ export class CustomInterceptor implements HttpInterceptor {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

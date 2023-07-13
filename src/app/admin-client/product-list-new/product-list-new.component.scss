@@ -1,0 +1,27 @@
+.query-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.img-cell {
+  width: 160px;
+  height: 90px;
+  padding: 0;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.text-end {
+  text-align: end;
+}

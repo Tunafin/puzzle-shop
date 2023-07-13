@@ -24,6 +24,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductListNewComponent } from './product-list-new/product-list-new.component';
 
 const canActivateFn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -64,6 +65,14 @@ const routes: Routes = [
           { path: ':id', component: ProductDetailComponent, data: { breadcrumb: new Breadcrumb('詳細資料') } },
         ]
       },
+      {
+        path: 'products_new',
+        data: { breadcrumb: new Breadcrumb('產品列表', '/admin/products_new') },
+        children: [
+          { path: '', component: ProductListNewComponent, data: { breadcrumb: null } },
+          { path: ':id', component: ProductDetailComponent, data: { breadcrumb: new Breadcrumb('詳細資料') } },
+        ]
+      },
       { path: 'orders', component: OrderListComponent, data: { breadcrumb: new Breadcrumb('訂單列表', '/admin/orders') } },
     ]
   },
@@ -78,7 +87,8 @@ const routes: Routes = [
     AdminLayoutComponent,
     ProductListComponent,
     OrderListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductListNewComponent
   ],
   imports: [
     CommonModule,
@@ -100,6 +110,6 @@ const routes: Routes = [
     MatProgressSpinnerModule,
 
     RouterModule.forChild(routes)
-  ],
+  ]
 })
 export class AdminClientModule { }
