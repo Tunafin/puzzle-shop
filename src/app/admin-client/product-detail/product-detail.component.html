@@ -1,10 +1,110 @@
 <div class="product-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <div *ngIf="!isLoading && !product">查無此id</div>
-  <ng-container *ngIf="product">
-    <!-- TODO Read mode and edit mode -->
-    <span>施工中敬請期待</span>
-    <img [src]="product.imageUrl" alt="商品圖片" width="300">
+  <mat-spinner *ngIf="isQuerying"></mat-spinner>
+  <div *ngIf="!isNew && !isQuerying && !product">查無此id</div>
+  <ng-container *ngIf="!isQuerying && (product || isNew)">
+    <div class="container mt-2">
+      <ng-container [formGroup]="formGroup">
+        <div class="row mb-2">
+          <div class="img-wrapper">
+            <img [src]="formGroup.get('imageUrl')?.value" alt="商品圖片">
+          </div>
+          <mat-form-field>
+            <mat-label>主要圖片</mat-label>
+            <input type="text" matInput [formControlName]="'imageUrl'">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>名稱</mat-label>
+            <input type="text" matInput [formControlName]="'title'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>分類</mat-label>
+            <input type="text" matInput [formControlName]="'category'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>數量</mat-label>
+            <input type="text" matInput [formControlName]="'num'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>單位</mat-label>
+            <input type="text" matInput [formControlName]="'unit'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>原價</mat-label>
+            <input type="number" matInput [formControlName]="'origin_price'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-6 col-xxl-3">
+            <mat-label>現價</mat-label>
+            <input type="number" matInput [formControlName]="'price'">
+          </mat-form-field>
+
+          <mat-form-field class="col-lg-12 col-xxl-6">
+            <mat-label>短描述</mat-label>
+            <input type="text" matInput [formControlName]="'description'">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>說明</mat-label>
+            <textarea type="text" matInput [formControlName]="'content'"></textarea>
+          </mat-form-field>
+
+          <ng-container *ngIf="formGroup.get('imagesUrl'); let subImgArr">
+            <div *ngFor="let subImgCtrl of $any(subImgArr).controls; let index=index" class="col-lg-6 col-xxl-3 mb-4">
+              <div class="sub-img-item">
+                <mat-form-field [appearance]="'outline'" class="d-block">
+                  <input type="text" matInput [formControl]="subImgCtrl">
+                  <button mat-icon-button matSuffix (click)="$any(subImgArr).removeAt(index)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <div class="sub-img-wrapper">
+                  <img [src]="subImgCtrl.value" [alt]="'商品其他圖片'+(index+1)">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-xxl-3 mb-4">
+              <div class="d-flex flex-column gap-3 p-3 border border-secondary rounded">
+                <button mat-raised-button color="undefined" (click)="pushNewImgCtrlToArray()">
+                  <mat-icon>add</mat-icon>
+                  新增圖片欄位
+                </button>
+
+                <button mat-raised-button color="undefined" (click)="uploadInput.click()">
+                  <mat-icon>upload_file</mat-icon>
+                  上傳圖片
+                </button>
+                <input #uploadInput type="file" accept="image/*" class="d-none" (change)="uploadImage($event)">
+
+                <span class="my-3"></span>
+
+                <button *ngIf="!isNew" mat-raised-button color="warn" (click)="resetForm()">
+                  <mat-icon>undo</mat-icon>
+                  重設所有更動
+                </button>
+
+                <button mat-raised-button color="accent" [disabled]="isSubmiting" (click)="submit()">
+                  <mat-icon *ngIf="!isSubmiting">save</mat-icon>
+                  <div class="d-flex gap-2">
+                    <mat-spinner *ngIf="isSubmiting" [diameter]="20"></mat-spinner>
+                    <ng-container *ngIf="isNew">新增產品</ng-container>
+                    <ng-container *ngIf="!isNew">儲存並更新</ng-container>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+      </ng-container>
+    </div>
 
   </ng-container>
 </div>

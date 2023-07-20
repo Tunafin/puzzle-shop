@@ -36,4 +36,14 @@ export class AdminProductService {
       return newRes;
     }));
   }
+
+  postProduct(product: Omit<Product, 'id'>) {
+    const url = this.baseURL + '/product';
+    return this.http.post<any>(url, { data: product });
+  }
+
+  putProduct(product: Product) {
+    const url = this.baseURL + '/product/' + product.id;
+    return this.http.put<any>(url, { data: product });
+  }
 }

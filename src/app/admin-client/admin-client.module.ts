@@ -15,6 +15,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { Breadcrumb } from 'src/models/breadcrumb.model';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -108,6 +110,8 @@ const routes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatDividerModule,
+    MatSnackBarModule,
 
     RouterModule.forChild(routes)
   ]

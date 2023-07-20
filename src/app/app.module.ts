@@ -17,12 +17,14 @@ export class CustomInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const { adminToken } = this.authGuardService;
-
     if (this._checkIfApiNeedToken(request.url)) {
-      // 設定admin token到標頭，這裡暫不檢查是否需要權限
       const modifiedRequest = request.clone({
         setHeaders: {
-          'Content-Type': 'application/json',
+          /**
+           * 不設置Content-Type為json，否則上傳檔案會出錯，
+           * 通常情況Angular會幫我們處理此部分而不需自行設置。
+           */
+          // 'Content-Type': 'application/json',
           'Authorization': adminToken
         }
       });
@@ -46,8 +48,8 @@ export class CustomInterceptor implements HttpInterceptor {
 export class CustomPaginatorIntl extends MatPaginatorIntl {
   /** 這裡的length是指api丟回來的總頁數 */
   override getRangeLabel = (page: number, pageSize: number, length: number) => {
-    if(length>0) {
-      return `第${page+1}頁 (共${length}頁)`;
+    if (length > 0) {
+      return `第${page + 1}頁 (共${length}頁)`;
     } else {
       return `沒有資料`;
     }
