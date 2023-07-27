@@ -46,4 +46,9 @@ export class AdminProductService {
     const url = this.baseURL + '/product/' + product.id;
     return this.http.put<any>(url, { data: product });
   }
+
+  deleteProduct(productId: string) {
+    const url = this.baseURL + '/product/' + productId;
+    return this.http.delete<any>(url, {});
+  }
 }

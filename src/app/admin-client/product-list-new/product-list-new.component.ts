@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Pagination } from 'src/models/pagination.model';
 import { Product } from 'src/models/product.model';
@@ -27,7 +29,11 @@ export class ProductListNewComponent {
 
   categoryCtrl = new FormControl<string>('');
 
-  constructor(private adminProductService: AdminProductService) {
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private adminProductService: AdminProductService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -46,5 +52,14 @@ export class ProductListNewComponent {
 
   handlePageEvent(event: PageEvent) {
     this.queryProducts(event.pageIndex + 1);
+  }
+
+  confirmDelete(product: Product) {
+    // TODO 確認刪除視窗
+
+    this.adminProductService.deleteProduct(product.id).subscribe(res => {
+      this.snackBar.open(res.message, '關閉', { duration: 2000 });
+      this.queryProducts();
+    });
   }
 }
