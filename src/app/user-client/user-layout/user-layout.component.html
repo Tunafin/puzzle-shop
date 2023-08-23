@@ -1,0 +1,80 @@
+<mat-toolbar class="navbar">
+  <img class="me-auto" src="assets/logo1.png" alt="logo">
+
+  <ng-container *ngIf="isXSmall">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>最新消息</button>
+      <button mat-menu-item>產品列表</button>
+      <button mat-menu-item>關於本站</button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container *ngIf="!isXSmall">
+    <button mat-button>最新消息</button>
+    <button mat-button>產品列表</button>
+    <button mat-button>關於本站</button>
+  </ng-container>
+  <ng-template #menuTemplate>
+
+  </ng-template>
+
+</mat-toolbar>
+
+<div class="outlet-wrapper">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="footer">
+  <div *ngIf="!isXSmall" class="container pt-5 pb-4 d-flex flex-column align-items-center gap-4">
+    <div class="w-100 d-flex justify-content-between">
+      <div class="d-flex flex-column">
+        <div class="mb-4">
+          <img src="assets/logo1.png" alt="logo">
+        </div>
+
+        <div class="d-flex flex-column gap-3 ms-1">
+          <div *ngFor="let info of infoList">
+            <span class="info-name ms-2">{{info.name}}</span>
+            <span class="info-text">{{info.text}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-link-list">
+        <button mat-icon-button>
+          <mat-icon svgIcon="facebook"></mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon svgIcon="twitter-old"></mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon svgIcon="instagram"></mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <mat-divider class="w-100"></mat-divider>
+
+    <div class="cc-text">本網站非商業使用，僅供個人學習用途</div>
+  </div>
+
+  <div *ngIf="isXSmall" class="pt-4 pb-3 d-flex flex-column align-items-center">
+    <div class="mb-4">
+      <img src="assets/logo1.png" alt="logo">
+    </div>
+
+    <div class="d-flex flex-column gap-3">
+      <div *ngFor="let info of infoList" class="d-flex flex-column align-items-center">
+        <span class="info-name">{{info.name}}</span>
+        <span class="info-text">{{info.text}}</span>
+      </div>
+    </div>
+
+    <mat-divider class="w-75 mx-auto my-3" inset="true"></mat-divider>
+
+    <div class="cc-text">本網站非商業使用，僅供個人學習用途</div>
+  </div>
+</div>

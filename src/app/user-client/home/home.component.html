@@ -1,0 +1,55 @@
+<div class="banner-area" [style.height.px]="isXSmall ? 550 : 860">
+  <div class="banner-title mb-4">
+    <h1>豐富謎題 等你挑戰</h1>
+  </div>
+
+  <div class="banner-content px-2 mb-5">
+    各種有趣的益智解謎Puzzle，從入門到專業，應有盡有
+  </div>
+
+  <button mat-flat-button color="primary">馬上看看</button>
+</div>
+
+<div class="container" style="height: 2000px;">
+  <div class="about-row-area row my-5 py-md-0 py-xl-5">
+    <div class="col-md-12 col-xl-6">
+      <img src="assets/desktop_about_1.jpg" alt="about_1" class="object-fit-cover rounded" style="width: 100%;">
+    </div>
+    <div class="col-md-12 col-xl-6 d-flex justify-content-center align-items-center">
+      <div class="about-content-block-container" [style.width.px]="isXSmall ? 330 : 520">
+        <img src="assets/desktop_q_mark.png" alt="" class="q-mark">
+        <div class="about-content-block">
+          <h2 class="about-content-title mb-3">Puzzle 是什麼</h2>
+          <span class="about-content-text">
+            Puzzle 不單指的是一般常見的拼圖，而是涵蓋各種科學解謎玩具，例如益智環、魯班鎖(孔明鎖)、解謎盒、各種奇形怪狀的魔術方塊與拼圖⋯⋯
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-row-area row">
+    <div class="col-md-12 col-xl-6 order-xl-2">
+      <img src="assets/desktop_about_2.jpg" alt="about_1" class="object-fit-cover rounded" style="width: 100%;">
+    </div>
+    <div class="col-md-12 col-xl-6 order-xl-1 d-flex justify-content-center align-items-center">
+      <div class="about-content-block-container" [style.width.px]="isXSmall ? 350 : 520">
+        <img src="assets/desktop_q_mark.png" alt="" class="q-mark">
+        <div class="about-content-block">
+          <h2 class="about-content-title mb-3">Puzzle 適合我嗎</h2>
+          <span class="about-content-text">
+            Puzzle 依照難度最高可到 10 級，本站為每個 Puzzle 都標上難度，不論你是新手或是身經百戰的專業人士，都可以在這裡找到適合您的 Puzzle。若您還沒體驗過 Puzzle
+            的魅力，別猶豫了，快來嘗試看看吧！ </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="false">
+    <!-- TODO 最新消息區塊 -->
+  </div>
+
+  <div *ngIf="false">
+    <!-- TODO 商品區塊 -->
+  </div>
+</div>

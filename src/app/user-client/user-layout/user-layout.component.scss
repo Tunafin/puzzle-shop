@@ -1,0 +1,63 @@
+$navbarHeight: 64px;
+
+:host ::ng-deep {
+  button.mdc-button.mat-primary {
+    color: #2B2826;
+    background-color: #FFDA55;
+
+    &:hover {
+      color: #EEEEEE;
+      background-color: #C67A21;
+      transition: 0.1s linear;
+    }
+  }
+}
+
+.navbar {
+  height: $navbarHeight;
+  position: fixed;
+  top: 0;
+  background-color: #2B2826;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+
+  button {
+    // 使用濾鏡反轉色彩
+    filter: invert(100%);
+  }
+}
+
+.outlet-wrapper {
+  margin-top: $navbarHeight;
+}
+
+.footer {
+  // background-color: #1A1817;
+  background: -webkit-linear-gradient(45deg, rgb(26, 24, 23), rgb(54, 54, 54));
+  background: linear-gradient(45deg, rgb(26, 24, 23), rgb(54, 54, 54));
+
+
+  .info-name {
+    color: #FFDA55;
+  }
+
+  .info-text {
+    color: #e2e2e2; // white 87%
+  }
+
+  .icon-link-list {
+    .mat-icon {
+      overflow: initial;
+    }
+  }
+
+  .mat-divider {
+    border-top-color: #636363; // white 30%
+  }
+
+  .cc-text {
+    color: #8f8f8f; // white 50%
+  }
+}

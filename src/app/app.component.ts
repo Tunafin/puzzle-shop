@@ -33,8 +33,6 @@ export class AppComponent {
 
             const favicon: HTMLLinkElement = document.querySelector('#favicon')!;
             favicon.href = isAdminPage ? 'assets/favicon_ng.ico' : 'assets/favicon.ico';
-            console.log(favicon);
-
           }
         }
       });
