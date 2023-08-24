@@ -1,0 +1,43 @@
+.product-card-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.1s linear;
+  background-color: #f7f7f7;
+
+  &:hover {
+    background-color: #beeef7;
+    scale: 1.01;
+    transition: 0.1s linear;
+    cursor: pointer;
+  }
+
+  .main-img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .product-title {
+    color: #2B2826;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .product-price {
+    font-size: 28px;
+    color: #2B2826A8;
+
+    &.sale {
+      color: #F14D4D;
+    }
+
+    &.sale-origin {
+      font-size: 20px;
+      text-decoration: line-through;
+    }
+  }
+}

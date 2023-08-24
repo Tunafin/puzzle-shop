@@ -10,7 +10,7 @@
   <button mat-flat-button color="primary">馬上看看</button>
 </div>
 
-<div class="container" style="height: 2000px;">
+<div class="container">
   <div class="about-row-area row my-5 py-md-0 py-xl-5">
     <div class="col-md-12 col-xl-6">
       <img src="assets/desktop_about_1.jpg" alt="about_1" class="object-fit-cover rounded" style="width: 100%;">
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="about-row-area row">
+  <div class="about-row-area row my-5 pt-md-0 pt-xl-5 pb-5">
     <div class="col-md-12 col-xl-6 order-xl-2">
       <img src="assets/desktop_about_2.jpg" alt="about_1" class="object-fit-cover rounded" style="width: 100%;">
     </div>
@@ -49,7 +49,15 @@
     <!-- TODO 最新消息區塊 -->
   </div>
 
-  <div *ngIf="false">
-    <!-- TODO 商品區塊 -->
+  <div>
+    <h2 class="ms-2 mb-4">最新上架</h2>
+    <div class="product-container mb-5" [class.is-xsmall]="isXSmall">
+      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+    </div>
   </div>
+
+  <div *ngIf="false">
+    <!-- TODO 折價券區塊 -->
+  </div>
+
 </div>

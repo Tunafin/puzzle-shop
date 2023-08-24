@@ -23,7 +23,7 @@
 
 </mat-toolbar>
 
-<div class="outlet-wrapper">
+<div class="outlet-wrapper"  style="min-height: 80vh;">
   <router-outlet></router-outlet>
 </div>
 
@@ -37,7 +37,7 @@
 
         <div class="d-flex flex-column gap-3 ms-1">
           <div *ngFor="let info of infoList">
-            <span class="info-name ms-2">{{info.name}}</span>
+            <span class="info-name mx-2">{{info.name}}</span>
             <span class="info-text">{{info.text}}</span>
           </div>
         </div>

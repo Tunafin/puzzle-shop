@@ -1,0 +1,14 @@
+<div *ngIf="product" class="product-card-wrapper rounded"
+  (click)="navigateToProductPage()">
+  <img [src]="product.imageUrl" alt="product image" class="main-img rounded mb-2">
+  <div class="product-title">{{product.title}}</div>
+
+  <ng-container *ngIf="product.price<product.origin_price; else originPrice">
+    <div class="product-price sale">NT$ {{product.price}}</div>
+    <div class="product-price sale-origin">NT$ {{product.origin_price}}</div>
+  </ng-container>
+
+  <ng-template #originPrice>
+    <div class="product-price">NT$ {{product.price}}</div>
+  </ng-template>
+</div>
