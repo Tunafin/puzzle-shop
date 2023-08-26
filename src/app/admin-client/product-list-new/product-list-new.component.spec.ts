@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppCommonTestingModule } from 'src/app/app-common-testing.module';
+import { AdminClientModule } from '../admin-client.module';
 import { ProductListNewComponent } from './product-list-new.component';
 
 describe('ProductListNewComponent', () => {
@@ -8,7 +10,11 @@ describe('ProductListNewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductListNewComponent]
+      declarations: [ProductListNewComponent],
+      imports: [
+        AppCommonTestingModule,
+        AdminClientModule
+      ]
     });
     fixture = TestBed.createComponent(ProductListNewComponent);
     component = fixture.componentInstance;

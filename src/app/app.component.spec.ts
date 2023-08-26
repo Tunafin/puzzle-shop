@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { AppCommonTestingModule } from './app-common-testing.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    declarations: [AppComponent],
+    imports: [AppCommonTestingModule],
   }));
 
   it('should create the app', () => {
@@ -14,16 +14,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'puzzle-shop'`, () => {
+  it(`should have as title 'Puzzle Shop'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('puzzle-shop');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('puzzle-shop app is running!');
+    expect(app.title).toEqual('Puzzle Shop');
   });
 });

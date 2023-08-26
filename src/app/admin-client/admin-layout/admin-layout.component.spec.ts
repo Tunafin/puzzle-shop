@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppCommonTestingModule } from 'src/app/app-common-testing.module';
+import { AdminClientModule } from '../admin-client.module';
 import { AdminLayoutComponent } from './admin-layout.component';
 
 describe('AdminLayoutComponent', () => {
@@ -8,7 +10,11 @@ describe('AdminLayoutComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminLayoutComponent]
+      declarations: [AdminLayoutComponent],
+      imports: [
+        AppCommonTestingModule,
+        AdminClientModule
+      ]
     });
     fixture = TestBed.createComponent(AdminLayoutComponent);
     component = fixture.componentInstance;

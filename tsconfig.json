@@ -24,6 +24,7 @@
       "dom"
     ],
     "typeRoots": [
+      "node_modules/@types"
     ],
   },
   "angularCompilerOptions": {
